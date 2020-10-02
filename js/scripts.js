@@ -80,6 +80,7 @@ function evaluateChoices (computerSelection, playerSelection) {
     return;
 }
 
+// function to prompt the player to keep playing
 function keepPlayingPrompt() {
         answers = ["yes", "no"];
         acceptableAnswer = false;
