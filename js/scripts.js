@@ -7,6 +7,9 @@ function computerPlay() {
     // return the chosen choice
     return computerSelection;
 }
+
+
+// function for running a single game
 function game() {
     let playerSelection;
     let computerSelection;
@@ -17,6 +20,9 @@ function game() {
     // run computer choice
     computerSelection = computerPlay();
 
+    // print choices
+    console.log(`You chose ${toTitleCase(playerSelection)}! The Computer chose ${toTitleCase(computerSelection)}!`)
+
     // evaluate choices
     evaluateChoices(computerSelection, playerSelection);
 
@@ -24,6 +30,7 @@ function game() {
     console.log(`The current score is: Computer- ${computerScore} Player- ${playerScore}`);
     return;
 }
+
 
 // function to evaluate choices and return the outcome
 function evaluateChoices (computerSelection, playerSelection) {
@@ -52,9 +59,12 @@ function evaluateChoices (computerSelection, playerSelection) {
         console.log("You Lose! Scissors beats Paper");
         computerScore += 1;
     }
-    else {
+    else if (computerSelection === "paper" & playerSelection === "scissors") {
         console.log("You Win! Scissors beats Paper");
         playerScore += 1;
+    }
+    else {
+        console.log("It's a tie!")
     }
     return;
 }
@@ -71,7 +81,14 @@ function keepPlayingPrompt() {
         }
 }
 
-
+function toTitleCase(str) {
+    return str.replace(
+      /\w\S*/g,
+      function(txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      }
+    );
+  }
 
 
 /// Program code
