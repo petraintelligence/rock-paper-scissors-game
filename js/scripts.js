@@ -86,7 +86,7 @@ function keepPlayingPrompt() {
         acceptableAnswer = false;
 
         while (acceptableAnswer === false) {
-            keepPlayingSelection = prompt("Do you want to keep playing? (Yes or No)").toLowerCase();
+            keepPlayingSelection = prompt("Do you want to play the best of 5 rounds? (Yes or No)").toLowerCase();
             if (answers.includes(keepPlayingSelection)) {
                 acceptableAnswer = true;
             }
@@ -114,18 +114,41 @@ function toTitleCase(str) {
     );
 }
 
+// function to determine winner
+function determineWinner() {
+    let winner;
+    if (computerScore > playerScore){
+        winner = " the Computer"
+    }
+    else if (playerScore > computerScore) {
+        winner = "the Player"
+    }
+    else {
+        winner = "It's a tie! Nobody wins! No participation trophies here!"
+    }
+    return winner;
+}
+
 // main game function
 function game() {
-    while (keepPlayingStatus === true){
+    while (keepPlayingStatus === true & round < 5){
         singleRound();
-        keepPlayingPrompt();
+
+        if (round === 1) {
+            keepPlayingPrompt();
+        }
+
+        round += 1;
     }
+    let winner = determineWinner();
+    console.log(`The overall winner is.... \n ${winner}!!!!`);
 }
 
 // init global variables
 let computerScore = 0;
 let playerScore = 0;
 let keepPlayingStatus = true;
+let round = 1;
 
 // greet the player
 console.log("Welcome to the classic game of Rock, Paper, Scissors!");
@@ -133,5 +156,7 @@ console.log("Welcome to the classic game of Rock, Paper, Scissors!");
 // run the game
 game();
 
+// thank the player for playing
+console.log("Thanks for playing! See you next time")
 
 
