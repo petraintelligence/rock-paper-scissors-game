@@ -9,7 +9,7 @@ function computerPlay() {
 }
 function game() {
     // greet player
-
+    console.log("Welcome to the classic game of Rock, Paper, Scissors!")
     // prompt user for input
     let playerSelection = prompt("Welcome to Rock, Paper, Scissors! \n Make your choice: Rock, Paper or Scissors");
     // run computer choice
