@@ -10,12 +10,24 @@ function computerPlay() {
 
 
 // function for running a single game
-function game() {
+function singleRound() {
     let playerSelection;
     let computerSelection;
 
+    answers = ["rock", "paper", "scissors"];
+    acceptableAnswer = false;
+
+    while (acceptableAnswer === false) {
+        playerSelection = prompt("Make your choice: Rock, Paper or Scissors").toLowerCase(); 
+        if (answers.includes(playerSelection)) {
+            acceptableAnswer = true;
+        }
+        else {
+            console.log("Please choose 'Rock', 'Paper' or 'Scissors'")
+        }
+    }
     // prompt user for input
-    playerSelection = prompt("Make your choice: Rock, Paper or Scissors"); 
+
 
     // run computer choice
     computerSelection = computerPlay();
@@ -34,8 +46,7 @@ function game() {
 
 // function to evaluate choices and return the outcome
 function evaluateChoices (computerSelection, playerSelection) {
-    playerSelection = playerSelection.toLowerCase();
-    
+  
     // Rock beats scissors
     if (computerSelection === "rock" & playerSelection === "scissors") {
         console.log("You Lose! Rock beats Scissors");
@@ -70,8 +81,19 @@ function evaluateChoices (computerSelection, playerSelection) {
 }
 
 function keepPlayingPrompt() {
-        // ask user if they want to keep playing
-        keepPlayingSelection = prompt("Do you want to keep playing?").toLowerCase();
+        answers = ["yes", "no"];
+        acceptableAnswer = false;
+
+        while (acceptableAnswer === false) {
+            keepPlayingSelection = prompt("Do you want to keep playing? (Yes or No)").toLowerCase();
+            if (answers.includes(keepPlayingSelection)) {
+                acceptableAnswer = true;
+            }
+            else {
+                console.log("Please choose 'Yes' or 'No'")
+            }
+        }
+
         if (keepPlayingSelection === "yes") {
             return;
         }
@@ -81,6 +103,7 @@ function keepPlayingPrompt() {
         }
 }
 
+// function to title case strings
 function toTitleCase(str) {
     return str.replace(
       /\w\S*/g,
@@ -88,19 +111,26 @@ function toTitleCase(str) {
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
       }
     );
-  }
+}
 
+// main game function
+function game() {
+    while (keepPlayingStatus === true){
+        singleRound();
+        keepPlayingPrompt();
+    }
+}
 
-/// Program code
+// init global variables
 let computerScore = 0;
 let playerScore = 0;
 let keepPlayingStatus = true;
 
+// greet the player
 console.log("Welcome to the classic game of Rock, Paper, Scissors!");
-while (keepPlayingStatus === true){
-    game();
-    keepPlayingPrompt();
-}
+
+// run the game
+game();
 
 
 
