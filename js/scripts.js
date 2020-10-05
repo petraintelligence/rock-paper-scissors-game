@@ -153,10 +153,21 @@ let round = 1;
 // greet the player
 console.log("Welcome to the classic game of Rock, Paper, Scissors!");
 
+
+
 // run the game
-game();
+// game();
 
 // thank the player for playing
 console.log("Thanks for playing! See you next time")
 
 
+
+const container = document.querySelector('#container');
+
+let rockbutton = document.createElement('button');
+rockbutton.innerHTML = "Rock";
+
+container.appendChild(rockbutton);
+
+rockbutton.addEventListener("click", () => alert("You chose ROCK!"))
