@@ -9,6 +9,7 @@ body {
     margin: 0px;
     padding: 0px;
     min-height: 100vh;
+    background-color: #100e17;
 }
 
 *, *::before, *::after {
@@ -27,7 +28,7 @@ div.flexbox {
 }
 
 #game-board{
-    border: 4px #6287a2 solid;
+    border: 8px #fe8802 solid;
     width: 800px;
     margin-top: 100px;
     background-color: #efd199;
@@ -35,8 +36,8 @@ div.flexbox {
 }
 
 #game-title{
-    background-color: #ce8f5a;
-    border-bottom: 4px #6287a2 solid;
+    background-color: #ef4e4a;
+    border: 4px #3b0f0c solid;
 }
 
 h1 {
@@ -48,8 +49,8 @@ h1 {
 }
 
 #start-game {
-    background-color: #707070;
-    border-color: #515152;
+    background-color: #3b0f0c;
+    border-color: #3b0f0c;
     width: 300px;
 }
 
@@ -61,16 +62,17 @@ h1 {
 
 
 #choice-display {
-    border: 4px #6287a2 solid;
+    border: 4px #3b0f0c solid;
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #80c8bc;
+    background-color: #fcfcfc;
+    color: #80c8bc;
 }
 
 #choice-inner-border {
-    border: 2px  #6287a2 solid;
+    border: 2px #3b0f0c solid;
     height: 300px;
 }
 
@@ -86,7 +88,7 @@ h1 {
 
 button {
     margin: 8px;
-    background-color: #306da8;
+    background-color: #e52e70;
     color: #fff;
     font-size: medium;
     font-weight: bold;
@@ -95,4 +97,8 @@ button {
     cursor: pointer;
     border: 1px solid #011e66;
     width: 100px;
+}
+
+#button-container {
+    margin-bottom: 20px;
 }
