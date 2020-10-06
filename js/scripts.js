@@ -152,10 +152,10 @@ let round = 1;
 
 const game_nav_container = document.querySelector('#game-nav');
 const instructions = document.createElement("H2");
-const greeting_content = document.createTextNode("Hello");
+const greeting_content = document.createTextNode("Click Start to Play");
 instructions.appendChild(greeting_content);
 game_nav_container.appendChild(instructions);
-greeting_content.nodeValue = "Updated"
+
 
 const startbutton = document.querySelector('#start-game');
 startbutton.addEventListener("click", () => alert('Starting game function'));
@@ -175,5 +175,8 @@ function updatedGame () {
 }
 
 function singleRound () {
+    let playerSelection;
+    let computerSelection;
+    greeting_content.nodeValue = "Your Turn!"
 
 }
