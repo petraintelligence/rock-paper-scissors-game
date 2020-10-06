@@ -153,21 +153,15 @@ let round = 1;
 // greet the player
 console.log("Welcome to the classic game of Rock, Paper, Scissors!");
 
+const startbutton = document.querySelector('#start-game');
+startbutton.addEventListener("click", () => alert('Starting game function'));
 
 
-// run the game
-// game();
+const rockbutton = document.querySelector('#rock-button');
+rockbutton.addEventListener("click", () => alert("You chose ROCK!"));
 
-// thank the player for playing
-console.log("Thanks for playing! See you next time")
+const paperbutton = document.querySelector('#paper-button');
+paperbutton.addEventListener("click", () => alert("You chose PAPER!"));
 
-
-
-const container = document.querySelector('#container');
-
-let rockbutton = document.createElement('button');
-rockbutton.innerHTML = "Rock";
-
-container.appendChild(rockbutton);
-
-rockbutton.addEventListener("click", () => alert("You chose ROCK!"))
+const scissorsbutton = document.querySelector('#scissors-button');
+scissorsbutton.addEventListener("click", () => alert("You chose SCISSORS!"));
