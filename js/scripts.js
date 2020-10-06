@@ -26,19 +26,13 @@ function singleRound() {
             console.log("Please choose 'Rock', 'Paper' or 'Scissors'")
         }
     }
-    // prompt user for input
 
-
-    // run computer choice
     computerSelection = computerPlay();
 
-    // print choices
     console.log(`You chose ${toTitleCase(playerSelection)}! The Computer chose ${toTitleCase(computerSelection)}!`)
 
-    // evaluate choices
     evaluateChoices(computerSelection, playerSelection);
 
-    // display current scores
     console.log(`The current score is: Computer- ${computerScore} Player- ${playerScore}`);
     return;
 }
@@ -144,14 +138,24 @@ function game() {
     console.log(`The overall winner is.... \n ${winner}!!!!`);
 }
 
+
+
+
+
+
+
 // init global variables
 let computerScore = 0;
 let playerScore = 0;
 let keepPlayingStatus = true;
 let round = 1;
 
-// greet the player
-console.log("Welcome to the classic game of Rock, Paper, Scissors!");
+const game_nav_container = document.querySelector('#game-nav');
+const instructions = document.createElement("H2");
+const greeting_content = document.createTextNode("Hello");
+instructions.appendChild(greeting_content);
+game_nav_container.appendChild(instructions);
+greeting_content.nodeValue = "Updated"
 
 const startbutton = document.querySelector('#start-game');
 startbutton.addEventListener("click", () => alert('Starting game function'));
@@ -165,3 +169,11 @@ paperbutton.addEventListener("click", () => alert("You chose PAPER!"));
 
 const scissorsbutton = document.querySelector('#scissors-button');
 scissorsbutton.addEventListener("click", () => alert("You chose SCISSORS!"));
+
+function updatedGame () {
+    singleRound();
+}
+
+function singleRound () {
+
+}
