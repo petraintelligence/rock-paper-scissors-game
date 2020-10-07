@@ -37,38 +37,38 @@ function singleRound() {
 
 // function to evaluate choices and return the outcome
 function evaluateChoices (computerSelection, playerSelection) {
-  
+    let evaluation; 
     // Rock beats scissors
     if (computerSelection === "rock" & playerSelection === "scissors") {
-        console.log("You Lose! Rock beats Scissors");
         computerScore += 1;
+        evaluation = "You Lose! Rock beats Scissors";
     }
     else if (computerSelection === "scissors" & playerSelection === "rock") {
-        console.log("You Win! Rock beats Scissors");
         playerScore += 1;
+        evaluation = "You Win! Rock beats Scissors";
     }
     // Paper beats rocks
     else if (computerSelection === "paper" & playerSelection === "rock") {
-        console.log("You Lose! Paper beats Rock");
         computerScore += 1;
+        evaluation = "You Lose! Paper beats Rock";
     }
     else if (computerSelection === "rock" & playerSelection === "paper") {
-        console.log("You Win! Paper beats Rock");
         playerScore += 1;
+        evaluation = "You Win! Paper beats Rock";
     }
     // Scissors beats paper
     else if (computerSelection === "scissors" & playerSelection === "paper") {
-        console.log("You Lose! Scissors beats Paper");
         computerScore += 1;
+        evaluation = "You Lose! Scissors beats Paper";
     }
     else if (computerSelection === "paper" & playerSelection === "scissors") {
-        console.log("You Win! Scissors beats Paper");
         playerScore += 1;
+        evaluation = "You Win! Scissors beats Paper";
     }
     else {
-        console.log("It's a tie!")
+        evaluation = "It's a tie!";
     }
-    return;
+    return evaluation;
 }
 
 // function to prompt the player to keep playing
@@ -155,7 +155,11 @@ game_nav_container.appendChild(instructions);
 
 
 const startbutton = document.querySelector('#start-game');
-startbutton.addEventListener("click", () => choicePrompt());
+startbutton.addEventListener("click", () => {
+    choicePrompt();
+    clearGameContainer();
+    startbutton.innerHTML = "Playing Single Round";}
+);
 
 
 const rockbutton = document.querySelector('#rock-button');
@@ -178,10 +182,19 @@ function choicePrompt () {
     greeting_content.nodeValue = "Your Turn! Make Your Choice!";
 }
 
+function clearGameContainer () {
+    document.getElementById('player-tag').innerHTML = " ";
+    document.getElementById('computer-tag').innerHTML = " ";
+}
+
 function singleRound(playerChoice) {
     let playerSelection = playerChoice.toLowerCase();
     document.getElementById('player-tag').innerHTML = "You chose " + toTitleCase(playerChoice) + "!";
 
     let computerSelection = computerPlay();
     document.getElementById('computer-tag').innerHTML = ("The computer chose " + toTitleCase(computerSelection) + "!");
+
+    greeting_content.nodeValue = evaluateChoices(computerSelection, playerSelection);
+
+    startbutton.innerHTML = "Play Again?"
 }
