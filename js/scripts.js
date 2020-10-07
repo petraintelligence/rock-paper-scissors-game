@@ -158,11 +158,13 @@ game_nav_container.appendChild(instructions);
 
 
 const startbutton = document.querySelector('#start-game');
-startbutton.addEventListener("click", () => alert('Starting game function'));
+startbutton.addEventListener("click", () => singleRound());
 
 
 const rockbutton = document.querySelector('#rock-button');
-rockbutton.addEventListener("click", () => alert("You chose ROCK!"));
+rockbutton.addEventListener("click", () => {
+    document.getElementById('player-tag').innerHTML = "You chose Rock!"
+});
 
 const paperbutton = document.querySelector('#paper-button');
 paperbutton.addEventListener("click", () => alert("You chose PAPER!"));
@@ -177,6 +179,6 @@ function updatedGame () {
 function singleRound () {
     let playerSelection;
     let computerSelection;
-    greeting_content.nodeValue = "Your Turn!"
+    greeting_content.nodeValue = "Your Turn! Make Your Choice!"
 
 }

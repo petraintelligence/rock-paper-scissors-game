@@ -88,11 +88,17 @@ h2 {
 #player-choice {
     width: 200px;
     height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #computer-choice{
     width: 200px;
     height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 button {
