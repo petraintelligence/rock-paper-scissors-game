@@ -1,10 +1,7 @@
 // function that takes no argument but returns rock, paper, or scissors when called
 function computerPlay() {
-    // array of choices to randomly choose from
     let choices = ["rock", "paper", "scissors"];
-    // choose a choice randomly
     let computerSelection = choices[Math.floor(Math.random() * choices.length)];
-    // return the chosen choice
     return computerSelection;
 }
 
@@ -26,19 +23,13 @@ function singleRound() {
             console.log("Please choose 'Rock', 'Paper' or 'Scissors'")
         }
     }
-    // prompt user for input
 
-
-    // run computer choice
     computerSelection = computerPlay();
 
-    // print choices
     console.log(`You chose ${toTitleCase(playerSelection)}! The Computer chose ${toTitleCase(computerSelection)}!`)
 
-    // evaluate choices
     evaluateChoices(computerSelection, playerSelection);
 
-    // display current scores
     console.log(`The current score is: Computer- ${computerScore} Player- ${playerScore}`);
     return;
 }
@@ -46,38 +37,38 @@ function singleRound() {
 
 // function to evaluate choices and return the outcome
 function evaluateChoices (computerSelection, playerSelection) {
-  
+    let evaluation; 
     // Rock beats scissors
     if (computerSelection === "rock" & playerSelection === "scissors") {
-        console.log("You Lose! Rock beats Scissors");
         computerScore += 1;
+        evaluation = "You Lose! Rock beats Scissors";
     }
     else if (computerSelection === "scissors" & playerSelection === "rock") {
-        console.log("You Win! Rock beats Scissors");
         playerScore += 1;
+        evaluation = "You Win! Rock beats Scissors";
     }
     // Paper beats rocks
     else if (computerSelection === "paper" & playerSelection === "rock") {
-        console.log("You Lose! Paper beats Rock");
         computerScore += 1;
+        evaluation = "You Lose! Paper beats Rock";
     }
     else if (computerSelection === "rock" & playerSelection === "paper") {
-        console.log("You Win! Paper beats Rock");
         playerScore += 1;
+        evaluation = "You Win! Paper beats Rock";
     }
     // Scissors beats paper
     else if (computerSelection === "scissors" & playerSelection === "paper") {
-        console.log("You Lose! Scissors beats Paper");
         computerScore += 1;
+        evaluation = "You Lose! Scissors beats Paper";
     }
     else if (computerSelection === "paper" & playerSelection === "scissors") {
-        console.log("You Win! Scissors beats Paper");
         playerScore += 1;
+        evaluation = "You Win! Scissors beats Paper";
     }
     else {
-        console.log("It's a tie!")
+        evaluation = "It's a tie!";
     }
-    return;
+    return evaluation;
 }
 
 // function to prompt the player to keep playing
@@ -144,19 +135,66 @@ function game() {
     console.log(`The overall winner is.... \n ${winner}!!!!`);
 }
 
+
+
+
+
+
+
 // init global variables
 let computerScore = 0;
 let playerScore = 0;
 let keepPlayingStatus = true;
 let round = 1;
 
-// greet the player
-console.log("Welcome to the classic game of Rock, Paper, Scissors!");
-
-// run the game
-game();
-
-// thank the player for playing
-console.log("Thanks for playing! See you next time")
+const game_nav_container = document.querySelector('#game-nav');
+const instructions = document.createElement("H2");
+const greeting_content = document.createTextNode("Click Start to Play");
+instructions.appendChild(greeting_content);
+game_nav_container.appendChild(instructions);
 
 
+const startbutton = document.querySelector('#start-game');
+startbutton.addEventListener("click", () => {
+    choicePrompt();
+    clearGameContainer();
+    startbutton.innerHTML = "Playing Single Round";}
+);
+
+
+const rockbutton = document.querySelector('#rock-button');
+rockbutton.addEventListener("click", () => {
+    singleRound('rock');
+});
+
+const paperbutton = document.querySelector('#paper-button');
+paperbutton.addEventListener("click", () => {
+    singleRound('paper');
+});
+
+const scissorsbutton = document.querySelector('#scissors-button');
+scissorsbutton.addEventListener("click", () => {
+    singleRound('scissors');
+});
+
+
+function choicePrompt () {
+    greeting_content.nodeValue = "Your Turn! Make Your Choice!";
+}
+
+function clearGameContainer () {
+    document.getElementById('player-tag').innerHTML = " ";
+    document.getElementById('computer-tag').innerHTML = " ";
+}
+
+function singleRound(playerChoice) {
+    let playerSelection = playerChoice.toLowerCase();
+    document.getElementById('player-tag').innerHTML = "You chose " + toTitleCase(playerChoice) + "!";
+
+    let computerSelection = computerPlay();
+    document.getElementById('computer-tag').innerHTML = ("The computer chose " + toTitleCase(computerSelection) + "!");
+
+    greeting_content.nodeValue = evaluateChoices(computerSelection, playerSelection);
+
+    startbutton.innerHTML = "Play Again?"
+}
