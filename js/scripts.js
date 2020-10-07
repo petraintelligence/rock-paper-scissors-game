@@ -1,10 +1,7 @@
 // function that takes no argument but returns rock, paper, or scissors when called
 function computerPlay() {
-    // array of choices to randomly choose from
     let choices = ["rock", "paper", "scissors"];
-    // choose a choice randomly
     let computerSelection = choices[Math.floor(Math.random() * choices.length)];
-    // return the chosen choice
     return computerSelection;
 }
 
@@ -158,27 +155,33 @@ game_nav_container.appendChild(instructions);
 
 
 const startbutton = document.querySelector('#start-game');
-startbutton.addEventListener("click", () => singleRound());
+startbutton.addEventListener("click", () => choicePrompt());
 
 
 const rockbutton = document.querySelector('#rock-button');
 rockbutton.addEventListener("click", () => {
-    document.getElementById('player-tag').innerHTML = "You chose Rock!"
+    singleRound('rock');
 });
 
 const paperbutton = document.querySelector('#paper-button');
-paperbutton.addEventListener("click", () => alert("You chose PAPER!"));
+paperbutton.addEventListener("click", () => {
+    singleRound('paper');
+});
 
 const scissorsbutton = document.querySelector('#scissors-button');
-scissorsbutton.addEventListener("click", () => alert("You chose SCISSORS!"));
+scissorsbutton.addEventListener("click", () => {
+    singleRound('scissors');
+});
 
-function updatedGame () {
-    singleRound();
+
+function choicePrompt () {
+    greeting_content.nodeValue = "Your Turn! Make Your Choice!";
 }
 
-function singleRound () {
-    let playerSelection;
-    let computerSelection;
-    greeting_content.nodeValue = "Your Turn! Make Your Choice!"
+function singleRound(playerChoice) {
+    let playerSelection = playerChoice.toLowerCase();
+    document.getElementById('player-tag').innerHTML = "You chose " + toTitleCase(playerChoice) + "!";
 
+    let computerSelection = computerPlay();
+    document.getElementById('computer-tag').innerHTML = ("The computer chose " + toTitleCase(computerSelection) + "!");
 }
