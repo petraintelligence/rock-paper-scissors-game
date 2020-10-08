@@ -1,33 +1,8 @@
-
-
-// function to determine winner
-function determineWinner() {
-    let winner;
-    if (computerScore > playerScore){
-        winner = " the Computer"
-    }
-    else if (playerScore > computerScore) {
-        winner = "the Player"
-    }
-    else {
-        winner = "It's a tie! Nobody wins! No participation trophies here!"
-    }
-    return winner;
-}
-
-// main game function
-function game() {
-    if (computerScore < 5 || playerScore < 5) {
-        clearGameContainer();
-        choicePrompt();
-        startbutton.innerHTML = "Playing Single Round";
-    }
-}
-
 // init global variables
 let computerScore = 0;
 let playerScore = 0;
 let round = 1;
+let winner;
 
 // Listeners
 const game_nav_container = document.querySelector('#game-nav');
@@ -38,6 +13,10 @@ game_nav_container.appendChild(instructions);
 
 const startbutton = document.querySelector('#start-game');
 startbutton.addEventListener("click", () => {
+    document.getElementById('player-score').innerHTML = "Player: " + playerScore;
+    document.getElementById('computer-score').innerHTML = "Computer: " + computerScore;
+    startbutton.innerHTML = "Playing Single Round";
+    startbutton.style.background = '#3b0f0c';
     game();
 });
 
@@ -56,7 +35,7 @@ scissorsbutton.addEventListener("click", () => {
     singleRound('scissors');
 });
 
-// functions
+// Functions
 function choicePrompt () {
     greeting_content.nodeValue = "Your Turn! Make Your Choice!";
 }
@@ -64,6 +43,11 @@ function choicePrompt () {
 function clearGameContainer () {
     document.getElementById('player-tag').innerHTML = " ";
     document.getElementById('computer-tag').innerHTML = " ";
+}
+
+function clearScore () {
+    playerScore = 0;
+    computerScore = 0;
 }
 
 function singleRound(playerChoice) {
@@ -75,7 +59,20 @@ function singleRound(playerChoice) {
 
     greeting_content.nodeValue = evaluateChoices(computerSelection, playerSelection);
     
+    document.getElementById('player-score').innerHTML = "Player: " + playerScore;
+    document.getElementById('computer-score').innerHTML = "Computer: " + computerScore;
+
     startbutton.innerHTML = "Next Round?"
+
+    if (computerScore == 5 || playerScore == 5) {
+        greeting_content.nodeValue = winner;
+        startbutton.innerHTML = "Play Again?";
+        startbutton.style.background = 'red';
+        determineWinner();
+        greeting_content.nodeValue = winner;
+        clearScore();
+        clearGameContainer();
+    }
 }
 
 function computerPlay() {
@@ -127,4 +124,22 @@ function toTitleCase(str) {
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
       }
     );
+}
+
+function determineWinner() {
+    if (computerScore > playerScore){
+        winner = "You Lose! The Computer Wins!"
+    }
+    else if (playerScore > computerScore) {
+        winner = "You Win!"
+    }
+    else {
+        winner = "It's a tie! Nobody wins! No participation trophies here!"
+    }
+    return winner;
+}
+
+function game() {
+        clearGameContainer();
+        choicePrompt();
 }
