@@ -51,6 +51,7 @@ h2 {
 
 h3 {
     text-align: center;
+    margin: 5px;
 }
 
 #game-nav {
@@ -81,7 +82,7 @@ h3 {
     align-items: center;
     justify-content: center;
     background-color: #fcfcfc;
-    color: #80c8bc;
+    color: #29917f;
 }
 
 #choice-inner-border {
@@ -92,17 +93,30 @@ h3 {
 #player-choice {
     width: 200px;
     height: 300px;
-    display: flex;
+    display: grid;
     align-items: center;
     justify-content: center;
+    place-items: center;
 }
 
 #computer-choice{
     width: 200px;
     height: 300px;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(1, max);
     align-items: center;
     justify-content: center;
+    place-items: center;
+}
+
+#player-score {
+    font-weight: bold;
+    color: #3069a4;
+}
+
+#computer-score {
+    font-weight: bold;
+    color: #3069a4;
 }
 
 button {
