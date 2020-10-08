@@ -105,6 +105,16 @@ h3 {
     justify-content: center;
 }
 
+#player-score {
+    font-weight: bold;
+    color: #3069a4;
+}
+
+#computer-score {
+    font-weight: bold;
+    color: #3069a4;
+}
+
 button {
     margin: 8px;
     background-color: #e52e70;
